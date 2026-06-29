@@ -48,12 +48,19 @@ app = FastAPI(
 )
 
 
-# CORS 配置：开发环境允许所有来源
+# CORS 配置：允许 Vercel 和本地开发
+origins = [
+    "https://plane-method.vercel.app",
+    "https://plane-method-git-main-yourusername.vercel.app",  # Vercel 预览域名
+    "http://localhost:5173",
+    "http://localhost:3000",
+]
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # 开发阶段；上线后改为具体域名
+    allow_origins=origins,
     allow_credentials=True,
-    allow_methods=["*"],
+    allow_methods=["GET", "POST", "OPTIONS"],
     allow_headers=["*"],
 )
 
