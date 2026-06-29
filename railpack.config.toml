@@ -1,0 +1,17 @@
+# Railway Railpack 配置
+# https://wiki.railway.app/railpack
+
+[build]
+# 指定构建命令
+command = "cd backend && pip install -r requirements.txt"
+
+[start]
+# 指定启动命令
+command = "cd backend && uvicorn app.main:app --host 0.0.0.0 --port $PORT"
+
+[environment]
+# 环境变量
+FASTAPI_ENV = "production"
+
+# Python 版本
+PYTHON_VERSION = "3.11"
