@@ -17,20 +17,23 @@ RUN pip install --no-cache-dir -r requirements.txt
 # 复制后端代码
 COPY backend/ ./backend/
 
-# 复制数据文件
+# 复制数据文件（JSON 源数据）
 COPY data/ ./data/
+
+# 初始化数据库（从 JSON 导入数据）
+RUN python data/init_db.py
 
 # 设置环境变量
 ENV PYTHONPATH=/app/backend
 ENV FASTAPI_ENV=production
 ENV PORT=8001
 
-# 暴露端口（使用环境变量）
-EXPOSE $PORT
+# 暴露端口
+EXPOSE 8001
 
 # 健康检查
 HEALTHCHECK --interval=30s --timeout=10s --start-period=5s --retries=3 \
-    CMD curl -f http://localhost:$PORT/ || exit 1
+    CMD curl -f http://localhost:8001/ || exit 1
 
-# 启动应用（使用 $PORT 环境变量）
+# 启动应用
 CMD ["sh", "-c", "python -m uvicorn backend.app.main:app --host 0.0.0.0 --port $PORT"]
