@@ -1,0 +1,56 @@
+[
+  {
+    "id": "glossary-KL",
+    "symbol": "KL",
+    "meaning": "框架梁",
+    "description": "框架结构中的主梁，承受竖向荷载并参与抗侧力"
+  },
+  {
+    "id": "glossary-L",
+    "symbol": "L",
+    "meaning": "梁",
+    "description": "非框架梁（次梁），仅承受竖向荷载"
+  },
+  {
+    "id": "glossary-WKL",
+    "symbol": "WKL",
+    "meaning": "屋面框架梁",
+    "description": "位于屋面层的框架梁"
+  },
+  {
+    "id": "glossary-XL",
+    "symbol": "XL",
+    "meaning": "悬挑梁",
+    "description": "一端固定一端自由的梁"
+  },
+  {
+    "id": "glossary-KZ",
+    "symbol": "KZ",
+    "meaning": "框架柱",
+    "description": "框架结构中的主要竖向承重构件"
+  },
+  {
+    "id": "glossary-Z",
+    "symbol": "Z",
+    "meaning": "柱",
+    "description": "非框架柱"
+  },
+  {
+    "id": "glossary-QZ",
+    "symbol": "QZ",
+    "meaning": "剪力墙上柱",
+    "description": "在剪力墙上延伸形成的柱"
+  },
+  {
+    "id": "glossary-span",
+    "symbol": "(数字)",
+    "meaning": "跨数",
+    "description": "构件跨越的支座数量。带A表示一端悬挑，带B表示两端悬挑"
+  },
+  {
+    "id": "glossary-section",
+    "symbol": "宽×高",
+    "meaning": "截面尺寸",
+    "description": "构件截面宽度和高度，单位mm"
+  }
+]

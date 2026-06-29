@@ -1,0 +1,10 @@
+[
+  {"grade": "C25", "ft_value": 1.27, "_note": "GB50010 表4.1.4-2"},
+  {"grade": "C30", "ft_value": 1.43, "_note": "GB50010 表4.1.4-2"},
+  {"grade": "C35", "ft_value": 1.57, "_note": "GB50010 表4.1.4-2"},
+  {"grade": "C40", "ft_value": 1.71, "_note": "GB50010 表4.1.4-2"},
+  {"grade": "C45", "ft_value": 1.80, "_note": "GB50010 表4.1.4-2"},
+  {"grade": "C50", "ft_value": 1.89, "_note": "GB50010 表4.1.4-2"},
+  {"grade": "C55", "ft_value": 1.96, "_note": "GB50010 表4.1.4-2"},
+  {"grade": "C60", "ft_value": 2.04, "_note": "GB50010 表4.1.4-2"}
+]

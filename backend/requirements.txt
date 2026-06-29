@@ -1,0 +1,11 @@
+# 平法辅助学习 App - 后端依赖
+# 注：Windows 侧 Python 环境已全部安装以下包，此文件仅作声明/版本锁定。
+
+fastapi>=0.100.0
+uvicorn[standard]>=0.23.0
+sqlmodel>=0.0.14
+aiosqlite>=0.19.0
+pydantic>=2.0.0
+pytest>=7.4.0
+pytest-asyncio>=0.21.0
+httpx>=0.24.0

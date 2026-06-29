@@ -1,0 +1,7 @@
+[
+  {"modifier_id": "diameter", "name": "直径修正", "condition": ">25mm", "factor": 1.10, "note": "带肋钢筋直径大于 25mm"},
+  {"modifier_id": "coating", "name": "涂层修正", "condition": "环氧涂层", "factor": 1.25, "note": "环氧树脂涂层带肋钢筋"},
+  {"modifier_id": "disturbance", "name": "扰动修正", "condition": "施工扰动", "factor": 1.10, "note": "施工过程中易产生扰动的钢筋"},
+  {"modifier_id": "cover_3d", "name": "保护层修正 (3d)", "condition": "保护层厚度 3d", "factor": 0.80, "note": "锚固钢筋保护层厚度为 3d 时"},
+  {"modifier_id": "cover_5d", "name": "保护层修正 (5d)", "condition": "保护层厚度 5d", "factor": 0.70, "note": "锚固钢筋保护层厚度为 5d 时"}
+]

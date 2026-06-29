@@ -1,0 +1,28 @@
+[
+  {"concrete_grade": "C25", "rebar_type": "HPB300", "lab_d": 34},
+  {"concrete_grade": "C30", "rebar_type": "HPB300", "lab_d": 30},
+  {"concrete_grade": "C35", "rebar_type": "HPB300", "lab_d": 28},
+  {"concrete_grade": "C40", "rebar_type": "HPB300", "lab_d": 25},
+  {"concrete_grade": "C45", "rebar_type": "HPB300", "lab_d": 24},
+  {"concrete_grade": "C50", "rebar_type": "HPB300", "lab_d": 23},
+  {"concrete_grade": "C55", "rebar_type": "HPB300", "lab_d": 22},
+  {"concrete_grade": "C60", "rebar_type": "HPB300", "lab_d": 21},
+
+  {"concrete_grade": "C25", "rebar_type": "HRB400", "lab_d": 40},
+  {"concrete_grade": "C30", "rebar_type": "HRB400", "lab_d": 35},
+  {"concrete_grade": "C35", "rebar_type": "HRB400", "lab_d": 32},
+  {"concrete_grade": "C40", "rebar_type": "HRB400", "lab_d": 29},
+  {"concrete_grade": "C45", "rebar_type": "HRB400", "lab_d": 28},
+  {"concrete_grade": "C50", "rebar_type": "HRB400", "lab_d": 27},
+  {"concrete_grade": "C55", "rebar_type": "HRB400", "lab_d": 26},
+  {"concrete_grade": "C60", "rebar_type": "HRB400", "lab_d": 25},
+
+  {"concrete_grade": "C25", "rebar_type": "HRB500", "lab_d": 48},
+  {"concrete_grade": "C30", "rebar_type": "HRB500", "lab_d": 43},
+  {"concrete_grade": "C35", "rebar_type": "HRB500", "lab_d": 39},
+  {"concrete_grade": "C40", "rebar_type": "HRB500", "lab_d": 36},
+  {"concrete_grade": "C45", "rebar_type": "HRB500", "lab_d": 34},
+  {"concrete_grade": "C50", "rebar_type": "HRB500", "lab_d": 32},
+  {"concrete_grade": "C55", "rebar_type": "HRB500", "lab_d": 31},
+  {"concrete_grade": "C60", "rebar_type": "HRB500", "lab_d": 30}
+]

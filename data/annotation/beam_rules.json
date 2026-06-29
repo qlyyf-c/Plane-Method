@@ -1,0 +1,13 @@
+[
+  {
+    "type": "beam",
+    "pattern": "^(KL|L|WKL|XL)(\\d+)(\\(([0-9]+[AB]?)\\))?\\s*(\\d+)×(\\d+)$",
+    "name": "框架梁标注",
+    "examples": "[\"KL7(3) 300×650\", \"L2(1A) 250×500\", \"WKL3(2) 300×700\"]",
+    "field_map": "{\"0\":\"component_type\",\"1\":\"number\",\"2\":\"span_count_raw\",\"3\":\"span_count\",\"4\":\"width\",\"5\":\"height\"}",
+    "glossary_entries": "[\"glossary-KL\",\"glossary-L\",\"glossary-WKL\",\"glossary-XL\",\"glossary-span\",\"glossary-section\"]",
+    "related_spec_id": "spec-beam-notation",
+    "default_rebar_type": "HRB400",
+    "_note": "正则来源于 design.md 第6.2节规则示例。待用户提供更多标注变体后扩展。"
+  }
+]

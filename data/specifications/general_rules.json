@@ -1,0 +1,29 @@
+[
+  {
+    "id": "spec-anchor-general",
+    "clause_number": "8.3",
+    "title": "钢筋锚固长度（GB50010）",
+    "category": "一般构造",
+    "content_html": "<h3>8.3.1~8.3.2 受拉钢筋锚固长度</h3><p>当计算中充分利用钢筋的抗拉强度时，受拉钢筋的锚固长度应符合下列规定：</p><p><strong>1. 基本锚固长度：</strong></p><p>l<sub>ab</sub> = α × (f<sub>y</sub>/f<sub>t</sub>) × d</p><p>式中：l<sub>ab</sub> — 受拉钢筋基本锚固长度；f<sub>y</sub> — 钢筋抗拉强度设计值；f<sub>t</sub> — 混凝土轴心抗拉强度设计值（高于 C60 时按 C60 取值）；d — 锚固钢筋直径；α — 锚固钢筋外形系数（光圆钢筋0.16，带肋钢筋0.14）。</p><p><strong>2. 受拉钢筋锚固长度：</strong></p><p>l<sub>a</sub> = ζ<sub>a</sub> × l<sub>ab</sub></p><p>式中：ζ<sub>a</sub> — 锚固长度修正系数，见8.3.2条。</p><p><strong>3. 抗震锚固长度(11.1.7条）：</strong></p><p>l<sub>aE</sub> = ζ<sub>aE</sub> × l<sub>a</sub></p><p>式中：ζ<sub>aE</sub> — 抗震锚固长度修正系数（一、二级取 1.15，三级取 1.05，四级取 1.00）。</p>",
+    "related_calc": "anchor",
+    "related_ann_type": null
+  },
+  {
+    "id": "spec-anchor-modifier",
+    "clause_number": "8.3.2",
+    "title": "锚固长度修正系数 ζa",
+    "category": "一般构造",
+    "content_html": "<h3>8.3.2 锚固长度修正系数</h3><p>下列情况下的锚固长度修正系数 ζ<sub>a</sub> 取值：</p><ul><li>带肋钢筋直径大于 25mm 时，ζ<sub>a</sub> = 1.10；</li><li>环氧树脂涂层带肋钢筋，ζ<sub>a</sub> = 1.25；</li><li>施工扰动（如滑模施工）影响，ζ<sub>a</sub> = 1.10；</li><li>保护层厚度为 3d 时，ζ<sub>a</sub> = 0.80；保护层厚度为 5d 时，ζ<sub>a</sub> = 0.70。</li></ul><p>注：当多于一项时，可按连乘计算。修正后的锚固长度不应小于 0.6 l<sub>ab</sub> 且不小于 200mm。</p><p style=\"color:#999;font-style:italic;\">[本条数值已与锚固修正系数表对应；其余条文细节待用户提供原文后补充]</p>",
+    "related_calc": "anchor",
+    "related_ann_type": null
+  },
+  {
+    "id": "spec-general-cover",
+    "clause_number": "8.2",
+    "title": "混凝土保护层最小厚度",
+    "category": "一般构造",
+    "content_html": "<h3>8.2 混凝土保护层最小厚度</h3><p>构件中普通钢筋及预应力筋的混凝土保护层厚度指：最外层钢筋（包括箍筋、构造筋、分布筋等）外边缘至混凝土表面的距离。</p><p style=\"color:#999;font-style:italic;\">[本条具体保护层厚度表格（按环境类别、构件类型、混凝土等级）待用户提供 22G101/GB50010 原文后补充]</p>",
+    "related_calc": null,
+    "related_ann_type": null
+  }
+]
