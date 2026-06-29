@@ -23,14 +23,14 @@ COPY data/ ./data/
 # 设置环境变量
 ENV PYTHONPATH=/app/backend
 ENV FASTAPI_ENV=production
-ENV PATH="/root/.local/bin:$PATH"
+ENV PORT=8001
 
-# 暴露端口
-EXPOSE 8001
+# 暴露端口（使用环境变量）
+EXPOSE $PORT
 
 # 健康检查
 HEALTHCHECK --interval=30s --timeout=10s --start-period=5s --retries=3 \
-    CMD curl -f http://localhost:8001/ || exit 1
+    CMD curl -f http://localhost:$PORT/ || exit 1
 
-# 启动应用
-CMD ["python", "-m", "uvicorn", "backend.app.main:app", "--host", "0.0.0.0", "--port", "8001"]
+# 启动应用（使用 $PORT 环境变量）
+CMD ["sh", "-c", "python -m uvicorn backend.app.main:app --host 0.0.0.0 --port $PORT"]
