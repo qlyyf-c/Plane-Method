@@ -1,0 +1,15 @@
+# Railway 配置文件
+# 参考：https://docs.railway.app/reference/config-format
+
+[build]
+# 构建命令
+command = "python -m pip install -r backend/requirements.txt"
+
+[start]
+# 启动命令
+command = "python -m uvicorn backend.app.main:app --host 0.0.0.0 --port $PORT"
+
+[deploy]
+# 健康检查
+healthcheckPath = "/"
+healthcheckTimeout = 30
