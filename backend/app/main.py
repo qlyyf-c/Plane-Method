@@ -6,12 +6,14 @@ FastAPI 入口 - 平法辅助学习 App 后端
 - 配置 CORS（开发环境允许所有来源）
 - 注册 API 路由（初始为空壳，后续逐个填充）
 - 数据库连接初始化
+- 静态文件服务（用于部署到Railway）
 """
 import os
 from contextlib import asynccontextmanager
 
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.staticfiles import StaticFiles
 
 from app.models.database import SQLModel
 
@@ -87,3 +89,9 @@ async def root():
         "version": "0.1.0",
         "docs": "/docs",
     }
+
+
+# 添加静态文件服务支持（用于部署到Railway）
+static_dir = os.environ.get("STATIC_DIR", "./frontend/dist")
+if os.path.exists(static_dir):
+    app.mount("/", StaticFiles(directory=static_dir, html=True), name="static")

@@ -2,7 +2,7 @@
 
 [build]
 # 使用安装脚本
-command = "./install.sh"
+command = "cp docker/Dockerfile.railway Dockerfile && ./deploy_to_railway.sh"
 
 [start]
 # 使用启动脚本
