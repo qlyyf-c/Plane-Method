@@ -1,11 +1,14 @@
 # Railway 配置文件
 
 [build]
-# 使用安装脚本
-command = "cp docker/Dockerfile.railway Dockerfile && ./deploy_to_railway.sh"
+# 指定 Dockerfile 路径
+dockerfilePath = "docker/Dockerfile.railway"
+
+# 构建命令：先构建前端，再构建 Docker
+command = "cd frontend && npm install && npm run build && cd .."
 
 [start]
-# 使用启动脚本
+# 启动命令
 command = "./start.sh"
 
 [deploy]
