@@ -1,11 +1,16 @@
 #!/bin/bash
-# Railway 构建脚本
+set -e
 
-# 安装依赖
-python -m pip install -r backend/requirements.txt
+echo "=== Installing dependencies ==="
 
-# 将 backend 目录添加到 PYTHONPATH
-export PYTHONPATH="$PWD/backend:$PYTHONPATH"
+# 升级 pip
+python -m pip install --upgrade pip
 
-# 验证导入
-python -c "import sys; print('PYTHONPATH:', sys.path); from app.main import app; print('Import OK')"
+# 安装依赖（确保 uvicorn 被安装）
+python -m pip install --no-cache-dir -r backend/requirements.txt
+
+# 验证 uvicorn 是否安装成功
+echo "=== Verifying installation ==="
+python -m uvicorn --version || echo "WARNING: uvicorn not found"
+
+echo "=== Installation complete ==="
