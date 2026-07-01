@@ -1,15 +1,27 @@
 # 平法助手 Dockerfile - 用于 Railway 部署
-# 包含前后端一体化构建
+# 多阶段构建：前端构建 + 后端服务
 
+# ========== 第一阶段：构建前端 ==========
+FROM node:20-slim AS frontend-builder
+
+WORKDIR /app/frontend
+
+# 复制前端依赖并安装
+COPY frontend/package.json frontend/package-lock.json ./
+RUN npm install
+
+# 复制前端源码并构建
+COPY frontend/ ./
+RUN npm run build
+
+# ========== 第二阶段：运行后端 ==========
 FROM python:3.11-slim
 
 WORKDIR /app
 
-# 安装系统依赖（包括 Node.js 用于前端构建）
+# 安装系统依赖
 RUN apt-get update && apt-get install -y \
     curl \
-    nodejs \
-    npm \
     && rm -rf /var/lib/apt/lists/*
 
 # 复制后端依赖并安装
@@ -22,11 +34,8 @@ COPY backend/ ./backend/
 # 复制数据文件（JSON 源数据）
 COPY data/ ./data/
 
-# 复制前端源码并构建
-COPY frontend/package.json frontend/package-lock.json ./frontend/
-RUN cd frontend && npm install
-COPY frontend/ ./frontend/
-RUN cd frontend && npm run build
+# 从第一阶段复制构建好的前端产物
+COPY --from=frontend-builder /app/frontend/dist ./frontend/dist
 
 # 初始化数据库（从 JSON 导入数据）
 RUN python data/init_db.py
