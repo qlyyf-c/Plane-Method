@@ -1,10 +1,7 @@
 # Railway 配置文件
 
 [build]
-# 指定 Dockerfile 路径
-dockerfilePath = "docker/Dockerfile.railway"
-
-# 构建命令：先构建前端，再构建 Docker
+# 构建命令：先构建前端
 command = "cd frontend && npm install && npm run build && cd .."
 
 [start]
