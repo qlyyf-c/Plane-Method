@@ -84,8 +84,17 @@ app.include_router(annotation_router, prefix="/api/v1/annotation", tags=["标注
 app.include_router(specification_router, prefix="/api/v1/specification", tags=["图集速查"])
 
 
-@app.get("/api")
+@app.get("/")
 async def root():
+    """根路径 - 返回应用基本信息"""
+    return {
+        "app": "平法助手 PingFa",
+        "version": "0.1.0",
+        "docs": "/docs",
+    }
+
+@app.get("/api")
+async def api_root():
     """API 根路径 - 返回应用基本信息"""
     return {
         "app": "平法助手 PingFa",
