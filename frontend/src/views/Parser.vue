@@ -208,6 +208,11 @@ function reset() {
       <div v-if="suggestion" class="text-caption mt-2">{{ suggestion }}</div>
     </v-alert>
 
+    <!-- 部分匹配提示 -->
+    <v-alert v-if="suggestion && !error" type="warning" variant="tonal" class="mb-4">
+      <div class="text-body-1">{{ suggestion }}</div>
+    </v-alert>
+
     <!-- 解析结果 -->
     <v-card v-if="result" class="mb-4">
       <v-card-title>
@@ -234,7 +239,7 @@ function reset() {
           </v-col>
           <v-col cols="12" sm="6" v-if="result.span_count">
             <div class="text-body-2 text-medium-emphasis">跨数</div>
-            <div class="text-h5">{{ result.span_count }}跨</div>
+            <div class="text-h5">{{ result.span_count }}</div>
           </v-col>
           <v-col cols="12" sm="6" v-if="result.width && result.height">
             <div class="text-body-2 text-medium-emphasis">截面尺寸</div>

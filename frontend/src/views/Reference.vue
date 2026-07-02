@@ -22,6 +22,14 @@ const specStore = useSpecificationStore()
 // ===== 常量 =====
 const pageTitle = '22G101 图集速查'
 
+// 分类名称映射（英文 → 中文）
+const categoryNames: Record<string, string> = {
+  beam: '梁',
+  column: '柱',
+  general: '一般构造',
+  wall: '墙'
+}
+
 // ===== 搜索与分类 =====
 const searchKeyword = ref('')
 const selectedCategory = ref<string>('')
@@ -159,7 +167,7 @@ function clearError() {
             filter
             variant="outlined"
           >
-            {{ cat }}
+            {{ categoryNames[cat] || cat }}
           </v-chip>
         </v-chip-group>
       </v-col>
@@ -177,7 +185,7 @@ function clearError() {
       <v-col cols="12">
         <v-card>
           <v-card-title>
-            {{ searchKeyword ? '搜索结果' : (selectedCategory ? selectedCategory + '条文' : '条文列表') }}
+            {{ searchKeyword ? '搜索结果' : (selectedCategory ? categoryNames[selectedCategory] + '条文' : '条文列表') }}
             <span class="text-caption text-medium-emphasis">({{ specStore.specifications.length }}条)</span>
           </v-card-title>
           <v-divider></v-divider>
