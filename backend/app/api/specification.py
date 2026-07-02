@@ -35,22 +35,8 @@ router = APIRouter()
 @router.get("/search")
 async def search_specifications(keyword: str = ""):
     """搜索条文 - 根据关键字在 title 和 content_html 中搜索"""
-    import logging
-    logger = logging.getLogger(__name__)
-
-    logger.info(f"Search request received: keyword='{keyword}'")
-
     if not keyword.strip():
         return {"results": [], "message": "请输入搜索关键字"}
-
-    with get_db_session() as session:
-        # 检查数据库中是否有数据
-        count = session.exec(select(Specification)).all()
-        logger.info(f"Total specifications in database: {len(count)}")
-
-        if len(count) == 0:
-            logger.error("Database is empty! No specifications found.")
-            return {"results": [], "message": "数据库为空，请联系管理员"}
 
     with get_db_session() as session:
         # 简单 LIKE 模糊搜索

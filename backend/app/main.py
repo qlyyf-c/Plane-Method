@@ -79,32 +79,9 @@ app.include_router(specification_router, prefix="/api/v1/specification", tags=["
 
 # ---- 静态文件服务（必须在 API 路由之后挂载）----
 # 用于部署到 Railway 时服务前端构建产物
-# 注意：不能直接用 app.mount("/")，否则会覆盖所有 API 路由
-# 使用自定义静态文件中间件，仅在非 API 路径时回退到静态文件
-import stat
-from fastapi.responses import FileResponse
-
 static_dir = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "..", "frontend", "dist")
-index_path = os.path.join(static_dir, "index.html") if os.path.exists(static_dir) else None
-
-
-@app.middleware("http")
-async def serve_static(request, call_next):
-    """静态文件中间件：API 路由优先，非 API 路由回退到前端静态文件"""
-    path = request.url.path
-
-    # API 路径直接放行，由路由处理
-    if path.startswith("/api/") or path.startswith("/docs") or path.startswith("/openapi"):
-        response = await call_next(request)
-        return response
-
-    # 非 API 路径返回前端 index.html（SPA 路由由前端处理）
-    if index_path:
-        return FileResponse(index_path)
-
-    # 没有前端产物时正常处理
-    response = await call_next(request)
-    return response
+if os.path.exists(static_dir):
+    app.mount("/", StaticFiles(directory=static_dir, html=True), name="static")
 
 
 @app.get("/")
