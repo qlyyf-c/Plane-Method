@@ -34,7 +34,7 @@ class ParsedResult(BaseModel):
     """解析结果"""
     component_type: str
     component_name: str
-    number: int
+    number: Optional[int] = None
     span_count: Optional[str] = None
     width: Optional[int] = None
     height: Optional[int] = None
@@ -98,9 +98,10 @@ async def parse_annotation_api(request: ParseRequest):
             ),
             glossary=[
                 GlossaryItem(symbol=g["symbol"], meaning=g["meaning"], description=g["description"])
-                for g in result.glossary
+                for g in (result.glossary or [])
             ],
             related_spec_id=result.related_spec_id,
+            suggestion=result.suggestion,
         )
     else:
         return ParseResponse(

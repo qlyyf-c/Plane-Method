@@ -159,13 +159,12 @@ function reset() {
           @keyup.enter="parseAnnotation"
           counter="50"
         >
-          <template v-slot:hint>
-            <div class="text-caption text-medium-emphasis mt-2">
-              <v-icon size="small" color="warning">mdi-information</v-icon>
-              请按示例规范填写，支持中英文括号混用
-            </div>
-          </template>
         </v-textarea>
+        <!-- 填写提示 -->
+        <div class="text-body-1 mt-2 mb-2" style="color: #d32f2f;">
+          <v-icon size="default" color="error">mdi-information-outline</v-icon>
+          请按下面的示例格式输入查询内容
+        </div>
       </v-col>
     </v-row>
 
