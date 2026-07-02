@@ -24,7 +24,7 @@ const pageTitle = '平法标注解析器'
 interface ParsedResult {
   component_type: string
   component_name: string
-  number: number
+  number?: number
   span_count?: string
   width?: number
   height?: number
@@ -233,7 +233,7 @@ function reset() {
             <div class="text-body-2 text-medium-emphasis">构件类型</div>
             <div class="text-h5">{{ result.component_type }} - {{ result.component_name }}</div>
           </v-col>
-          <v-col cols="12" sm="6">
+          <v-col cols="12" sm="6" v-if="result.number">
             <div class="text-body-2 text-medium-emphasis">编号</div>
             <div class="text-h5">{{ result.number }}号</div>
           </v-col>
