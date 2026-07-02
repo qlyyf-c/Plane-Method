@@ -38,7 +38,10 @@ COPY data/ ./data/
 COPY --from=frontend-builder /app/frontend/dist ./frontend/dist
 
 # 初始化数据库（从 JSON 导入数据）
-RUN python data/init_db.py
+RUN echo "=== Starting database initialization ===" && \
+    python data/init_db.py && \
+    echo "=== Database initialization completed ===" && \
+    ls -la data/
 
 # 设置环境变量
 ENV PYTHONPATH=/app/backend
