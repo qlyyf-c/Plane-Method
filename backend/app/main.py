@@ -65,13 +65,6 @@ app.add_middleware(
 )
 
 
-# ---- 静态文件服务（必须在 API 路由之前挂载）----
-# 用于部署到 Railway 时服务前端构建产物
-static_dir = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "dist")
-if os.path.exists(static_dir):
-    app.mount("/", StaticFiles(directory=static_dir, html=True), name="static")
-
-
 # ---- API 路由注册 ----
 from app.api.data import router as data_router
 from app.api.anchor import router as anchor_router
@@ -82,6 +75,13 @@ app.include_router(data_router, prefix="/api/v1/data", tags=["数据选项"])
 app.include_router(anchor_router, prefix="/api/v1/anchor", tags=["锚固计算"])
 app.include_router(annotation_router, prefix="/api/v1/annotation", tags=["标注解析"])
 app.include_router(specification_router, prefix="/api/v1/specification", tags=["图集速查"])
+
+
+# ---- 静态文件服务（必须在 API 路由之后挂载）----
+# 用于部署到 Railway 时服务前端构建产物
+static_dir = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "dist")
+if os.path.exists(static_dir):
+    app.mount("/", StaticFiles(directory=static_dir, html=True), name="static")
 
 
 @app.get("/")
