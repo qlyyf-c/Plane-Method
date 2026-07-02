@@ -7,6 +7,12 @@ export PYTHONPATH="$PWD/backend:$PYTHONPATH"
 # 设置数据库路径（相对于项目根目录）
 export DB_PATH="$PWD/data/pingfa.db"
 
+# 如果数据库不存在，初始化数据库
+if [ ! -f "$DB_PATH" ]; then
+    echo "Database not found, initializing..."
+    python data/init_db.py
+fi
+
 # 如果存在前端构建产物，则设置静态文件路径
 if [ -d "$PWD/frontend/dist" ]; then
     export STATIC_DIR="$PWD/frontend/dist"
