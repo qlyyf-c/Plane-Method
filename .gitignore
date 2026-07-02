@@ -57,3 +57,6 @@ data/*.sqlite
 
 # Backend temp files
 backend/get-pip.py
+
+# Docker
+.dockerignore
