@@ -1,12 +1,5 @@
 # Railway 配置文件
-
-[build]
-# 构建命令：先构建前端
-command = "cd frontend && npm install && npm run build && cd .."
-
-[start]
-# 启动命令
-command = "./start.sh"
+# 使用 Dockerfile 进行多阶段构建
 
 [deploy]
 healthcheckPath = "/"
