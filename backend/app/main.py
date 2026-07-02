@@ -79,7 +79,7 @@ app.include_router(specification_router, prefix="/api/v1/specification", tags=["
 
 # ---- 静态文件服务（必须在 API 路由之后挂载）----
 # 用于部署到 Railway 时服务前端构建产物
-static_dir = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "dist")
+static_dir = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "..", "frontend", "dist")
 if os.path.exists(static_dir):
     app.mount("/", StaticFiles(directory=static_dir, html=True), name="static")
 
