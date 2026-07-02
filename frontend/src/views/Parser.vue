@@ -151,14 +151,21 @@ function reset() {
         <v-textarea
           v-model="inputText"
           label="输入平法标注"
-          placeholder="例如：KL7(3) 300×650"
+          placeholder="例如：KL7(3) 300×650、L2、WKL6(5)、KL4（5）等"
           outlined
           clearable
           rows="3"
           auto-grow
           @keyup.enter="parseAnnotation"
           counter="50"
-        ></v-textarea>
+        >
+          <template v-slot:hint>
+            <div class="text-caption text-medium-emphasis mt-2">
+              <v-icon size="small" color="warning">mdi-information</v-icon>
+              请按示例规范填写，支持中英文括号混用
+            </div>
+          </template>
+        </v-textarea>
       </v-col>
     </v-row>
 
