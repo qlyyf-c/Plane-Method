@@ -46,6 +46,9 @@ DB_URL = f"sqlite:///{DB_PATH}"
 # JSON 数据文件目录
 DATA_DIR = os.path.join(PROJECT_ROOT, "data")
 
+# 条文数据文件目录（使用 build/ 目录下的新格式文件）
+SPECIFICATIONS_DIR = os.path.join(PROJECT_ROOT, "data", "specifications", "build")
+
 
 def load_json(filename: str) -> list:
     """加载 JSON 数据文件，返回列表"""
@@ -56,7 +59,21 @@ def load_json(filename: str) -> list:
     with open(filepath, "r", encoding="utf-8") as f:
         data = json.load(f)
     if not isinstance(data, list):
-        print(f"  [WARN] 文件格式错误：{filepath}, 期望列表, 跳过")
+        print(f"  [WARN] 文件格式错误：{filepath}, 期望列表，跳过")
+        return []
+    return data
+
+
+def load_spec_json(filename: str) -> list:
+    """加载条文 JSON 数据文件（从 SPECIFICATIONS_DIR 目录）"""
+    filepath = os.path.join(SPECIFICATIONS_DIR, filename)
+    if not os.path.exists(filepath):
+        print(f"  [WARN] 文件不存在：{filepath}, 跳过")
+        return []
+    with open(filepath, "r", encoding="utf-8") as f:
+        data = json.load(f)
+    if not isinstance(data, list):
+        print(f"  [WARN] 文件格式错误：{filepath}, 期望列表，跳过")
         return []
     return data
 
@@ -109,11 +126,37 @@ def import_data(session: Session, model_class, filename: str) -> int:
             session.add(instance)
             count += 1
         except Exception as e:
-            print(f"  [WARN] 导入失败: {record} -> {e}")
+            print(f"  [WARN] 导入失败：{record} -> {e}")
             skipped += 1
 
     session.commit()
-    print(f"  [OK] {model_class.__name__}: 导入 {count} 条, 跳过 {skipped} 条(数据待填入)")
+    print(f"  [OK] {model_class.__name__}: 导入 {count} 条，跳过 {skipped} 条 (数据待填入)")
+    return count
+
+
+def import_spec_data(session: Session, model_class, filename: str) -> int:
+    """导入一个 JSON 文件的数据到对应表（从 SPECIFICATIONS_DIR 目录）"""
+    data = load_spec_json(filename)
+    if not data:
+        return 0
+
+    count = 0
+    skipped = 0
+    for record in data:
+        cleaned = clean_record(record, model_class)
+        if cleaned is None:
+            skipped += 1
+            continue
+        try:
+            instance = model_class(**cleaned)
+            session.add(instance)
+            count += 1
+        except Exception as e:
+            print(f"  [WARN] 导入失败：{record} -> {e}")
+            skipped += 1
+
+    session.commit()
+    print(f"  [OK] {model_class.__name__}: 导入 {count} 条，跳过 {skipped} 条 (数据待填入)")
     return count
 
 
@@ -148,11 +191,12 @@ def main():
         total += import_data(session, Glossary, "annotation/glossary.json")
 
         print("\n--- 导入条文数据 ---")
-        total += import_data(session, Specification, "specifications/general_rules.json")
-        total += import_data(session, Specification, "specifications/column_rules.json")
-        total += import_data(session, Specification, "specifications/beam_rules.json")
+        # 使用 build/ 目录下的新格式文件（由 Markdown 源文件构建生成）
+        total += import_spec_data(session, Specification, "general_rules.json")
+        total += import_spec_data(session, Specification, "column_rules.json")
+        total += import_spec_data(session, Specification, "beam_rules.json")
 
-    print(f"\n[OK] 数据库初始化完成, 共导入 {total} 条记录")
+    print(f"\n[OK] 数据库初始化完成，共导入 {total} 条记录")
     print(f"  数据库文件：{DB_PATH}")
 
     # 验证：查看各表记录数
