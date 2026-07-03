@@ -14,7 +14,7 @@ const description = '土木工程平法识图辅助学习工具，基于 22G101-
 // 作者信息（待用户填写）
 // const authorName = '待填写'
 const contactWechat = '待填写'
-const contactEmail = '94784518@qq.com'
+const contactEmail: string = '94784518@qq.com'
 </script>
 
 <template>
@@ -83,7 +83,7 @@ const contactEmail = '94784518@qq.com'
                   <span>{{ contactWechat }}</span>
                 </template>
               </v-list-item>
-              <v-list-item v-if="contactEmail !== '待填写'">
+              <v-list-item>
                 <template v-slot:prepend>
                   <v-icon color="primary">mdi-email</v-icon>
                 </template>
