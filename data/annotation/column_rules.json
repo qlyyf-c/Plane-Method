@@ -1,13 +1,13 @@
 [
   {
     "type": "column",
-    "pattern": "^(KZ|Z|QZ)(\\d+)(\\s+(\\d+)×(\\d+))?$",
+    "pattern": "^(KZ|Z|QZ|LZ)(\\d+)(\\s+(\\d+)×(\\d+))?$",
     "name": "柱标注",
-    "examples": "[\"KZ1 500×500\", \"Z2 400×600\", \"QZ1\"]",
+    "examples": "[\"KZ1 500×500\", \"Z2 400×600\", \"QZ1\", \"LZ1 400×400\"]",
     "field_map": "{\"0\":\"component_type\",\"1\":\"number\",\"2\":\"section_raw\",\"3\":\"width\",\"4\":\"height\"}",
-    "glossary_entries": "[\"glossary-KZ\",\"glossary-Z\",\"glossary-QZ\",\"glossary-section\"]",
+    "glossary_entries": "[\"glossary-KZ\",\"glossary-Z\",\"glossary-QZ\",\"glossary-LZ\",\"glossary-section\"]",
     "related_spec_id": "spec-column-notation",
     "default_rebar_type": "HRB400",
-    "_note": "正则来源于 design.md 第6.2节。柱标注格式较简单，待用户提供更多变体后扩展。"
+    "_note": "正则来源于 design.md 第 6.2 节。注意：22G101 已取消 LZ/QZ 独立代号，统一按 KZ 规则标注，但保留解析支持以兼容旧图纸。"
   }
 ]

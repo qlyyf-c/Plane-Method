@@ -25,7 +25,8 @@ class AnchorCalculateRequest(BaseModel):
     rebar_type: str = Field(..., description="钢筋类型，如'HRB400'")
     diameter: int = Field(..., description="钢筋直径 (mm)")
     seismic_grade: str = Field(..., description="抗震等级（一级/二级/三级/四级/非抗震）")
-    modifier_ids: Optional[List[str]] = Field(default=None, description="修正系数 ID 列表")
+    modifier_ids: Optional[List[str]] = Field(default=None, description="修正系数 ID 列表（不含保护层）")
+    cover_thickness: Optional[int] = Field(default=None, ge=0, description="保护层厚度 (mm)，不填则不修正")
 
 
 class LabResult(BaseModel):
@@ -62,14 +63,15 @@ class AnchorCalculateResponse(BaseModel):
 @router.post("/calculate", response_model=AnchorCalculateResponse)
 async def calculate_anchor_api(request: AnchorCalculateRequest):
     """计算锚固长度
-    
+
     输入参数：
     - concrete_grade: 混凝土等级（如"C30"）
     - rebar_type: 钢筋类型（如"HRB400"）
     - diameter: 钢筋直径 (mm)
     - seismic_grade: 抗震等级（一级/二级/三级/四级/非抗震）
-    - modifier_ids: 可选的修正系数 ID 列表
-    
+    - modifier_ids: 可选的修正系数 ID 列表（不含保护层）
+    - cover_thickness: 可选的保护层厚度 (mm)，动态计算修正系数
+
     返回：
     - lab: 基本锚固长度
     - la: 受拉钢筋锚固长度
@@ -83,6 +85,7 @@ async def calculate_anchor_api(request: AnchorCalculateRequest):
             diameter=request.diameter,
             seismic_grade=request.seismic_grade,
             modifier_ids=request.modifier_ids,
+            cover_thickness=request.cover_thickness,
         )
         
         # 构建响应
@@ -123,48 +126,51 @@ async def calculate_anchor_api(request: AnchorCalculateRequest):
 @router.get("/options")
 async def get_anchor_options():
     """获取锚固计算器所有选项
-    
+
     返回所有可用的下拉选项数据，包括：
     - 混凝土等级
-    - 钢筋类型  
+    - 钢筋类型
     - 抗震等级
     - 钢筋直径
-    - 修正系数
+    - 修正系数（不含保护层，保护层改为数值输入）
+
+    注：保护层修正已改为数值输入，不再返回 cover_3d/cover_5d 选项
     """
     from sqlmodel import Session, select
     from sqlalchemy import create_engine
     from app.models.database import ConcreteGrade, RebarType, SeismicModifier, RebarDiameter, AnchorModifier
-    
+
     _root = os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
     DB_PATH = os.path.join(_root, "data", "pingfa.db")
     DB_URL = f"sqlite:///{DB_PATH}"
-    
+
     with Session(create_engine(DB_URL)) as session:
         # 混凝土等级
         concrete_grades = [
             {"grade": g.grade, "ft_value": g.ft_value}
             for g in session.exec(select(ConcreteGrade).order_by(ConcreteGrade.grade))
         ]
-        
+
         # 钢筋类型
         rebar_types = [
             {"type": r.type, "fy_value": r.fy_value, "alpha": r.alpha}
             for r in session.exec(select(RebarType))
         ]
-        
+
         # 抗震等级
         seismic_grades = [
             {"grade": s.grade, "factor": s.factor, "note": s.note}
             for s in session.exec(select(SeismicModifier).order_by(SeismicModifier.grade))
         ]
-        
+
         # 钢筋直径
         diameters = [
             {"diameter": d.diameter, "note": d.note}
             for d in session.exec(select(RebarDiameter).order_by(RebarDiameter.diameter))
         ]
-        
-        # 修正系数
+
+        # 修正系数（过滤掉保护层选项，保护层改为数值输入）
+        all_modifiers = session.exec(select(AnchorModifier)).all()
         modifiers = [
             {
                 "modifier_id": m.modifier_id,
@@ -173,9 +179,10 @@ async def get_anchor_options():
                 "factor": m.factor,
                 "note": m.note,
             }
-            for m in session.exec(select(AnchorModifier))
+            for m in all_modifiers
+            if m.modifier_id not in ("cover_3d", "cover_5d", "diameter")  # 过滤保护层和直径（直径自动判断）
         ]
-    
+
     return {
         "concrete_grades": concrete_grades,
         "rebar_types": rebar_types,

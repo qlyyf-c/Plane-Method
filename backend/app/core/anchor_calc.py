@@ -128,9 +128,40 @@ def get_seismic_factor(seismic_grade: str) -> float:
         return 1.0  # 默认非抗震
 
 
+def get_cover_factor(cover_mm: int, diameter: int) -> tuple[float, str]:
+    """计算保护层厚度修正系数 ζc
+
+    依据 22G101-1 表 2.2.1，保护层修正为连续插值：
+    - c/d < 3  → 1.0（不修正）
+    - c/d = 3  → 0.8
+    - 3 < c/d < 5 → 线性内插 (0.8 → 0.7)
+    - c/d ≥ 5 → 0.7
+
+    Args:
+        cover_mm: 保护层厚度 (mm)
+        diameter: 钢筋直径 (mm)
+
+    Returns:
+        (修正系数, 修正说明)
+    """
+    ratio = cover_mm / diameter
+
+    if ratio < 3:
+        return 1.0, ""
+    elif ratio == 3:
+        return 0.8, f"保护层={cover_mm}mm (3d), 系数0.8"
+    elif ratio < 5:
+        # 线性内插: (ratio - 3) / (5 - 3) * (0.7 - 0.8) + 0.8
+        factor = 0.8 - (ratio - 3) * 0.05  # 0.05 = (0.8-0.7) / (5-3)
+        return round(factor, 3), f"保护层={cover_mm}mm ({ratio:.2f}d), 系数{factor:.2f}"
+    else:
+        return 0.7, f"保护层={cover_mm}mm (≥5d), 系数0.7"
+
+
 def calculate_modifiers(
     diameter: int,
     modifier_ids: Optional[List[str]] = None,
+    cover_thickness: Optional[int] = None,
 ) -> tuple[float, List[str]]:
     """计算锚固长度修正系数 ζa
 
@@ -138,7 +169,8 @@ def calculate_modifiers(
 
     Args:
         diameter: 钢筋直径 (mm)
-        modifier_ids: 用户勾选的修正系数 ID 列表
+        modifier_ids: 用户勾选的修正系数 ID 列表（不含保护层）
+        cover_thickness: 保护层厚度 (mm)，若提供则动态计算修正系数
 
     Returns:
         (total_factor, applied_modifier_names)
@@ -153,10 +185,19 @@ def calculate_modifiers(
         total_factor *= 1.10
         applied_names.append("直径>25mm")
 
-    # 处理用户勾选的修正
+    # 保护层修正（动态计算，不查数据库）
+    if cover_thickness is not None and cover_thickness > 0:
+        cover_factor, cover_note = get_cover_factor(cover_thickness, diameter)
+        if cover_factor < 1.0:  # 只有系数 <1.0 时才应用（有修正效果）
+            total_factor *= cover_factor
+            applied_names.append(cover_note)
+
+    # 处理用户勾选的其他修正（涂层/扰动，不含保护层）
     if modifier_ids:
+        # 过滤掉保护层相关的 modifier_id（不再使用）
+        valid_ids = [mid for mid in modifier_ids if mid not in ("cover_3d", "cover_5d")]
         with get_db_session() as session:
-            for mod_id in modifier_ids:
+            for mod_id in valid_ids:
                 result = session.exec(
                     select(AnchorModifier).where(AnchorModifier.modifier_id == mod_id)
                 ).first()
@@ -164,6 +205,9 @@ def calculate_modifiers(
                     # 跳过已自动应用的直径修正
                     if mod_id == "diameter" and diameter > 25:
                         continue  # 已自动应用
+                    # 跳过保护层修正（已改为动态计算）
+                    if mod_id in ("cover_3d", "cover_5d"):
+                        continue
                     total_factor *= result.factor
                     applied_names.append(result.name)
 
@@ -176,6 +220,7 @@ def calculate_anchor(
     diameter: int,
     seismic_grade: str,
     modifier_ids: Optional[List[str]] = None,
+    cover_thickness: Optional[int] = None,
 ) -> AnchorResult:
     """完整锚固长度计算
 
@@ -190,7 +235,8 @@ def calculate_anchor(
         rebar_type: 钢筋类型（如"HRB400"）
         diameter: 钢筋直径 (mm)
         seismic_grade: 抗震等级（一级/二级/三级/四级/非抗震）
-        modifier_ids: 用户勾选的修正系数 ID 列表
+        modifier_ids: 用户勾选的修正系数 ID 列表（不含保护层）
+        cover_thickness: 保护层厚度 (mm)，若提供则动态计算修正系数
 
     Returns:
         AnchorResult: 完整的锚固计算结果
@@ -215,8 +261,10 @@ def calculate_anchor(
     # lab_formula = calculate_lab_formula(concrete_grade, rebar_type, diameter)
     # error_rate = abs(lab_mm - lab_formula) / lab_formula
 
-    # 3. 计算修正系数 ζa
-    modifier_factor, modifiers_applied = calculate_modifiers(diameter, modifier_ids)
+    # 3. 计算修正系数 ζa（含保护层动态计算）
+    modifier_factor, modifiers_applied = calculate_modifiers(
+        diameter, modifier_ids, cover_thickness
+    )
 
     # 4. 计算 la = ζa × lab
     la_d = lab_d * modifier_factor
@@ -248,14 +296,64 @@ def calculate_anchor(
 
 # 测试代码
 if __name__ == "__main__":
-    # 测试用例：C30/HRB400/25mm/二级抗震
+    # 测试用例 1：C30/HRB400/25mm/二级抗震，无保护层修正
     result = calculate_anchor(
         concrete_grade="C30",
         rebar_type="HRB400",
         diameter=25,
         seismic_grade="二级",
     )
+    print("=== 测试 1：无保护层修正 ===")
     print(f"lab: {result.lab_d}d = {result.lab_mm}mm")
     print(f"la: {result.la_d}d = {result.la_mm}mm")
     print(f"laE: {result.laE_d}d = {result.laE_mm}mm")
     print(f"抗震系数：{result.seismic_factor}")
+    print(f"修正：{result.modifiers_applied}")
+
+    # 测试用例 2：保护层 75mm (3d)，应得系数 0.8
+    print("\n=== 测试 2：保护层 75mm (3d) ===")
+    result2 = calculate_anchor(
+        concrete_grade="C30",
+        rebar_type="HRB400",
+        diameter=25,
+        seismic_grade="二级",
+        cover_thickness=75,
+    )
+    print(f"修正：{result2.modifiers_applied}")
+    print(f"la: {result2.la_d}d = {result2.la_mm}mm")
+
+    # 测试用例 3：保护层 100mm (4d)，应线性插值
+    print("\n=== 测试 3：保护层 100mm (4d) ===")
+    result3 = calculate_anchor(
+        concrete_grade="C30",
+        rebar_type="HRB400",
+        diameter=25,
+        seismic_grade="二级",
+        cover_thickness=100,
+    )
+    print(f"修正：{result3.modifiers_applied}")
+    print(f"la: {result3.la_d}d = {result3.la_mm}mm")
+
+    # 测试用例 4：保护层 125mm (5d)，应得系数 0.7
+    print("\n=== 测试 4：保护层 125mm (5d) ===")
+    result4 = calculate_anchor(
+        concrete_grade="C30",
+        rebar_type="HRB400",
+        diameter=25,
+        seismic_grade="二级",
+        cover_thickness=125,
+    )
+    print(f"修正：{result4.modifiers_applied}")
+    print(f"la: {result4.la_d}d = {result4.la_mm}mm")
+
+    # 测试用例 5：保护层 50mm (2d)，应得系数 1.0（不修正）
+    print("\n=== 测试 5：保护层 50mm (2d, <3d) ===")
+    result5 = calculate_anchor(
+        concrete_grade="C30",
+        rebar_type="HRB400",
+        diameter=25,
+        seismic_grade="二级",
+        cover_thickness=50,
+    )
+    print(f"修正：{result5.modifiers_applied}")
+    print(f"la: {result5.la_d}d = {result5.la_mm}mm")

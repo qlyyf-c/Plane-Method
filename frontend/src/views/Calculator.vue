@@ -22,6 +22,7 @@ const rebarType = ref<string>('')
 const diameter = ref<number>(25)
 const seismicGrade = ref<string>('非抗震')
 const selectedModifiers = ref<string[]>([])
+const coverThickness = ref<number | null>(null)  // 保护层厚度 (mm)
 
 // ===== 选项数据 (从 Store 读取) =====
 const concreteOptions = computed(() => optionsStore.concreteGrades)
@@ -94,6 +95,7 @@ async function calculate() {
       diameter: diameter.value,
       seismic_grade: seismicGrade.value,
       modifier_ids: selectedModifiers.value.length > 0 ? selectedModifiers.value : undefined,
+      cover_thickness: coverThickness.value || undefined,  // 保护层厚度，不填则不修正
     })
     const res = response.data
 
@@ -141,6 +143,7 @@ function reset() {
   result.value = null
   error.value = null
   selectedModifiers.value = []
+  coverThickness.value = null  // 重置保护层厚度
 }
 </script>
 
@@ -202,6 +205,20 @@ function reset() {
                 item-title="grade"
                 label="抗震等级"
                 required
+              />
+            </v-col>
+
+            <!-- 保护层厚度 -->
+            <v-col cols="12" sm="6">
+              <v-text-field
+                v-model.number="coverThickness"
+                type="number"
+                label="保护层厚度"
+                hint="单位：mm，不填则不修正"
+                :min="0"
+                :rules="[v => v === null || v === '' || v >= 0 || '保护层厚度不能为负数']"
+                persistent-hint
+                clearable
               />
             </v-col>
           </v-row>

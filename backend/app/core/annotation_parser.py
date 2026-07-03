@@ -205,8 +205,9 @@ def build_column_result(match) -> AnnotationParseResult:
     height = int(match.group(4))
 
     name_map = {
-        "KZ": "框架柱", "Z": "非框架柱", "QZ": "剪力墙上柱",
-        "LZ": "梁上柱", "ZH": "转换柱", "XZ": "芯柱",
+        "KZ": "框架柱", "Z": "非框架柱",
+        "QZ": "墙上柱", "LZ": "梁上柱",
+        "ZH": "转换柱", "XZ": "芯柱",
     }
     component_name = name_map.get(component_type, component_type)
 
@@ -218,7 +219,18 @@ def build_column_result(match) -> AnnotationParseResult:
         height=height,
     )
 
-    glossary = load_glossary(["glossary-KZ", "glossary-section"])
+    # 根据构件类型加载对应的释义
+    # QZ/LZ 返回其自身的"已取消"说明，KZ/Z/ZH/XZ 返回各自释义
+    glossary_id_map = {
+        "KZ": "glossary-KZ",
+        "Z": "glossary-Z",
+        "QZ": "glossary-QZ",
+        "LZ": "glossary-LZ",
+        "ZH": "glossary-ZH",
+        "XZ": "glossary-XZ",
+    }
+    glossary_id = glossary_id_map.get(component_type, "glossary-KZ")
+    glossary = load_glossary([glossary_id, "glossary-section"])
 
     return AnnotationParseResult(
         success=True,
@@ -308,8 +320,9 @@ def build_partial_result(partial: Dict[str, Any]) -> AnnotationParseResult:
     # 组件名称映射
     name_map = {
         "KL": "框架梁", "L": "非框架梁", "WKL": "屋面框架梁", "XL": "悬挑梁",
-        "KZ": "框架柱", "Z": "非框架柱", "QZ": "剪力墙上柱",
-        "LZ": "梁上柱", "ZH": "转换柱", "XZ": "芯柱",
+        "KZ": "框架柱", "Z": "非框架柱",
+        "QZ": "墙上柱", "LZ": "梁上柱",
+        "ZH": "转换柱", "XZ": "芯柱",
     }
     component_name = name_map.get(component_type, component_type)
 
@@ -322,11 +335,15 @@ def build_partial_result(partial: Dict[str, Any]) -> AnnotationParseResult:
         height=partial.get("height"),
     )
 
-    # 获取基础释义
-    if component_type in ["KL", "L", "WKL", "XL"]:
-        glossary = load_glossary(["glossary-KL"])
-    else:
-        glossary = load_glossary(["glossary-KZ"])
+    # 获取基础释义 - 根据构件类型加载对应的 glossary
+    glossary_id_map = {
+        "KL": "glossary-KL", "L": "glossary-L", "WKL": "glossary-WKL", "XL": "glossary-XL",
+        "KZ": "glossary-KZ", "Z": "glossary-Z",
+        "QZ": "glossary-QZ", "LZ": "glossary-LZ",
+        "ZH": "glossary-ZH", "XZ": "glossary-XZ",
+    }
+    glossary_id = glossary_id_map.get(component_type, "glossary-KZ")
+    glossary = load_glossary([glossary_id])
 
     # 生成友好的提示信息
     suggestion = generate_suggestion(partial, component_type)

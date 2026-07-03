@@ -14,7 +14,7 @@ const description = '土木工程平法识图辅助学习工具，基于 22G101-
 // 作者信息（待用户填写）
 // const authorName = '待填写'
 const contactWechat = '待填写'
-const contactEmail = '待填写'
+const contactEmail = '94784518@qq.com'
 </script>
 
 <template>
@@ -94,17 +94,6 @@ const contactEmail = '待填写'
                   <span>{{ contactEmail }}</span>
                 </template>
               </v-list-item>
-              <v-list-item v-if="contactWechat === '待填写' || contactEmail === '待填写'">
-                <template v-slot:prepend>
-                  <v-icon color="warning">mdi-alert-circle</v-icon>
-                </template>
-                <template v-slot:title>
-                  <span class="font-weight-bold">联系方式待补充</span>
-                </template>
-                <template v-slot:subtitle>
-                  <span>请开发者在 About.vue 中填写真实的联系方式</span>
-                </template>
-              </v-list-item>
             </v-list>
           </v-card-text>
         </v-card>
@@ -148,22 +137,5 @@ const contactEmail = '待填写'
       </v-col>
     </v-row>
 
-    <!-- 技术栈 -->
-    <v-row>
-      <v-col cols="12">
-        <v-card>
-          <v-card-title>技术栈</v-card-title>
-          <v-card-text>
-            <v-chip-group>
-              <v-chip color="green" variant="tonal">Vue 3</v-chip>
-              <v-chip color="orange" variant="tonal">Vuetify 3</v-chip>
-              <v-chip color="pink" variant="tonal">FastAPI</v-chip>
-              <v-chip color="blue" variant="tonal">SQLModel</v-chip>
-              <v-chip color="grey" variant="tonal">PWA</v-chip>
-            </v-chip-group>
-          </v-card-text>
-        </v-card>
-      </v-col>
-    </v-row>
-  </v-container>
+      </v-container>
 </template>

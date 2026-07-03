@@ -253,18 +253,22 @@ function reset() {
       <v-card-title>符号释义</v-card-title>
       <v-card-text>
         <v-list density="compact">
-          <v-list-item
-            v-for="item in glossary"
-            :key="item.symbol"
-            :title="item.symbol"
-            :subtitle="item.meaning"
-          >
-            <template v-slot:append>
-              <div class="text-caption text-medium-emphasis" style="max-width: 200px; white-space: normal;">
+          <template v-for="item in glossary" :key="item.symbol">
+            <!-- QZ/LZ 等特殊说明：只显示 description -->
+            <v-list-item v-if="item.description && item.description.startsWith('注意：')">
+              <div class="text-body-1" style="white-space: normal;">
                 {{ item.description }}
               </div>
-            </template>
-          </v-list-item>
+            </v-list-item>
+            <!-- 普通释义：显示 title + subtitle + description -->
+            <v-list-item v-else :title="item.symbol" :subtitle="item.meaning">
+              <template v-slot:append>
+                <div class="text-caption text-medium-emphasis" style="max-width: 200px; white-space: normal;">
+                  {{ item.description }}
+                </div>
+              </template>
+            </v-list-item>
+          </template>
         </v-list>
       </v-card-text>
     </v-card>

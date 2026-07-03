@@ -38,8 +38,14 @@
   {
     "id": "glossary-QZ",
     "symbol": "QZ",
-    "meaning": "剪力墙上柱",
-    "description": "在剪力墙上延伸形成的柱"
+    "meaning": "框架柱",
+    "description": "注意：22G101已取消原16G101中的LZ、QZ独立构件代号，相关构件统一按框架柱规则进行标注。"
+  },
+  {
+    "id": "glossary-LZ",
+    "symbol": "LZ",
+    "meaning": "框架柱",
+    "description": "注意：22G101已取消原16G101中的LZ、QZ独立构件代号，相关构件统一按框架柱规则进行标注。"
   },
   {
     "id": "glossary-span",
