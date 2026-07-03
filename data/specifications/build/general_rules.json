@@ -1,0 +1,74 @@
+[
+  {
+    "id": "spec-anchor-general",
+    "clause_number": "8.3.1~8.3.2",
+    "title": "受拉钢筋锚固长度",
+    "category": "general",
+    "content_html": "<h1>8.3.1~8.3.2 受拉钢筋锚固长度</h1>\n<p>当计算中充分利用钢筋的抗拉强度时，受拉钢筋的锚固长度应符合下列规定：</p>\n<h2>1. 基本锚固长度</h2>\n<p>l<sub>ab</sub> = α × (f<sub>y</sub>/f<sub>t</sub>) × d</p>\n<p>式中：\n- l<sub>ab</sub> — 受拉钢筋基本锚固长度\n- f<sub>y</sub> — 钢筋抗拉强度设计值\n- f<sub>t</sub> — 混凝土轴心抗拉强度设计值（高于 C60 时按 C60 取值）\n- d — 锚固钢筋直径\n- α — 锚固钢筋外形系数（光圆钢筋0.16，带肋钢筋0.14）</p>\n<h2>2. 受拉钢筋锚固长度</h2>\n<p>l<sub>a</sub> = ζ<sub>a</sub> × l<sub>ab</sub></p>\n<p>式中：\n- ζ<sub>a</sub> — 锚固长度修正系数，见8.3.2条</p>\n<h2>3. 抗震锚固长度(11.1.7条）</h2>\n<p>l<sub>aE</sub> = ζ<sub>aE</sub> × l<sub>a</sub></p>\n<p>式中：\n- ζ<sub>aE</sub> — 抗震锚固长度修正系数（一、二级取 1.15，三级取 1.05，四级取 1.00）</p>",
+    "related_calc": null,
+    "related_ann_type": null
+  },
+  {
+    "id": "spec-anchor-modifier",
+    "clause_number": "8.3.2",
+    "title": "锚固长度修正系数",
+    "category": "general",
+    "content_html": "<h1>8.3.2 锚固长度修正系数</h1>\n<p>下列情况下的锚固长度修正系数 ζ<sub>a</sub> 取值：</p>\n<ul>\n<li>带肋钢筋直径大于 25mm 时，ζ<sub>a</sub> = 1.10</li>\n<li>环氧树脂涂层带肋钢筋，ζ<sub>a</sub> = 1.25</li>\n<li>施工扰动（如滑模施工）影响，ζ<sub>a</sub> = 1.10</li>\n<li>保护层厚度为 3d 时，ζ<sub>a</sub> = 0.80；保护层厚度为 5d 时，ζ<sub>a</sub> = 0.70</li>\n</ul>\n<p>注：当多于一项时，可按连乘计算。修正后的锚固长度不应小于 0.6 l<sub>ab</sub> 且不小于 200mm。</p>",
+    "related_calc": null,
+    "related_ann_type": null
+  },
+  {
+    "id": "spec-concrete",
+    "clause_number": "4.1",
+    "title": "混凝土结构一般规定",
+    "category": "general",
+    "content_html": "<h1>4.1 混凝土结构一般规定</h1>\n<h2>1. 混凝土强度等级</h2>\n<p><strong>基础：</strong>\n- 不应低于 C25\n- 当有防水要求时，混凝土抗渗等级不应小于 P6</p>\n<p><strong>柱、墙：</strong>\n- 一~三级框架的柱、抗震墙的混凝土强度等级不宜高于 C60\n- 四级框架和 non-seismic 设计的柱、墙可采用 C70</p>\n<p><strong>梁、板：</strong>\n- 不宜低于 C25\n- 预应力混凝土构件不宜低于 C40</p>\n<h2>2. 最大裂缝宽度限值</h2>\n<table>\n<thead>\n<tr>\n<th>环境类别</th>\n<th>最大裂缝宽度 (mm)</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td>一</td>\n<td>0.30</td>\n</tr>\n<tr>\n<td>二 a</td>\n<td>0.20</td>\n</tr>\n<tr>\n<td>二 b</td>\n<td>0.15</td>\n</tr>\n<tr>\n<td>三 a</td>\n<td>0.10</td>\n</tr>\n<tr>\n<td>三 b</td>\n<td>0.05</td>\n</tr>\n</tbody>\n</table>\n<p>注：\n- 对处于室内干燥环境的构件，可不进行裂缝宽度验算\n- 对直接承受重复荷载的构件，裂缝宽度限值应符合专门规定</p>\n<h2>3. 钢筋最小保护层厚度</h2>\n<p>见《8.2 混凝土保护层最小厚度》条文。</p>\n<h2>4. 混凝土耐久性要求</h2>\n<p><strong>冻融环境：</strong>\n- 寒冷地区（日平均气温≤5℃的天数超过 90 天）应采取抗冻措施\n- 混凝土强度等级不应低于 C30\n- 含气量宜控制在 3.0%~5.0%</p>\n<p><strong>海洋环境：</strong>\n- 浪溅区和水位变动区应采用高性能混凝土\n- 钢筋保护层厚度应适当增加\n- 宜采用环氧涂层钢筋或不锈钢钢筋</p>\n<p><strong>化学腐蚀环境：</strong>\n- 应根据腐蚀介质种类选择水泥品种\n- 混凝土强度等级不应低于 C30\n- 应采取表面防护措施</p>\n<h2>5. 施工注意事项</h2>\n<p><strong>模板工程：</strong>\n- 模板应具有足够的承载力、刚度和稳定性\n- 模板接缝应严密，不得漏浆\n- 模板拆除时间应符合规范要求</p>\n<p><strong>混凝土浇筑：</strong>\n- 自由倾落高度不宜超过 2m，超过时应采用串筒或溜槽\n- 应分层浇筑，每层厚度不宜超过振捣棒作用部分长度的 1.25 倍\n- 应连续浇筑，避免形成冷缝</p>\n<p><strong>养护：</strong>\n- 应在浇筑完毕后 12 小时内加以覆盖并保湿养护\n- 浇水养护时间：硅酸盐水泥、普通硅酸盐水泥不少于 7 天；掺加外加剂或有抗渗要求的不少于 14 天\n- 大体积混凝土养护时间不应少于 14 天</p>",
+    "related_calc": null,
+    "related_ann_type": null
+  },
+  {
+    "id": "spec-connection",
+    "clause_number": "11.2",
+    "title": "梁柱节点构造",
+    "category": "general",
+    "content_html": "<h1>11.2 梁柱节点构造</h1>\n<h2>1. 节点核心区尺寸</h2>\n<p><strong>矩形节点：</strong>\n- 节点的宽度不应小于柱宽\n- 节点的有效高度不应小于框架梁的高度\n- 当梁宽与柱宽之差小于柱宽的 1/4 时，可采取加腋措施</p>\n<p><strong>偏心节点：</strong>\n- 当梁中心线与柱中心线不重合时，偏心距不宜大于柱截面该方向尺寸的 1/4\n- 当偏心距超过限值时，应采取加强措施或进行专门设计</p>\n<h2>2. 节点箍筋配置</h2>\n<p><strong>加密要求：</strong>\n- 框架梁柱节点核心区的箍筋应全高加密\n- 箍筋间距不应大于 100mm\n- 一级抗震时，箍筋直径不应小于 10mm；二~四级不应小于 8mm</p>\n<p><strong>体积配箍率：</strong>\n| 抗震等级 | 角节点   | 边节点   | 中节点   |\n|----------|----------|----------|----------|\n| 一级     | 1.2%     | 1.0%     | 0.8%     |\n| 二级     | 1.0%     | 0.8%     | 0.6%     |\n| 三级     | 0.8%     | 0.6%     | 0.5%     |\n| 四级     | 0.6%     | 0.5%     | 0.4%     |</p>\n<h2>3. 纵向钢筋锚固</h2>\n<p><strong>框架梁上部纵筋：</strong>\n- 应贯穿节点或按锚固要求弯折\n- 直线锚固长度不应小于 labE（抗震）或 lab（非抗震）\n- 弯折锚固时，水平段长度不应小于 0.4labE，竖直段长度不应小于 15d</p>\n<p><strong>框架梁下部纵筋：</strong>\n- 端支座处应满足锚固要求\n- 可采用直锚或弯锚形式\n- 中支座处应按受拉钢筋锚固</p>\n<p><strong>框架柱纵筋：</strong>\n- 应贯通节点核心区\n- 顶层边柱和角柱纵筋应弯折锚固\n- 弯折段水平投影≥0.4labE，竖直投影≥15d</p>\n<h2>4. 节点核心区受剪承载力</h2>\n<p>节点核心区的受剪承载力应符合下列公式要求：</p>\n<pre><code>Vj ≤ (0.1ηfcbcjhj + 0.9fyvAvsj(hj0-as')/s) / γRE\n</code></pre>\n<p>其中：\n- Vj — 节点核心区剪力设计值\n- η — 约束修正系数\n- fc — 混凝土轴心抗压强度设计值\n- bcb、hj — 节点核心区的计算宽度和有效高度\n- fyv、Avsj、s — 箍筋抗拉强度、总截面积和间距</p>\n<h2>5. 特殊节点处理</h2>\n<p><strong>转换节点：</strong>\n- 转换梁上柱的节点应按特殊节点设计\n- 应进行详细的受力分析和构造处理\n- 必要时进行试验验证</p>\n<p><strong>复杂节点：</strong>\n- 多向梁交汇的节点应进行专门分析\n- 应考虑各方向梁对节点的共同作用\n- 必要时采用有限元方法进行验算</p>",
+    "related_calc": null,
+    "related_ann_type": null
+  },
+  {
+    "id": "spec-detail-cover",
+    "clause_number": "8.5",
+    "title": "混凝土细节构造",
+    "category": "general",
+    "content_html": "<h1>8.5 混凝土细节构造</h1>\n<h2>1. 施工缝处理</h2>\n<p><strong>施工缝位置：</strong>\n- 柱：基础顶面、梁底面、楼板顶面\n- 梁：跨度中间 1/3 范围内\n- 板：平行于短边的任意位置</p>\n<p><strong>施工缝处理要求：</strong>\n- 应清除表面浮浆和松散混凝土\n- 应凿毛并清洗干净\n- 应铺设水泥砂浆或界面剂</p>\n<p><strong>浇筑注意事项：</strong>\n- 应先浇筑 50~100mm 厚与混凝土同配比的水泥砂浆\n- 应仔细振捣，确保新旧混凝土结合密实\n- 不得过振导致离析</p>\n<h2>2. 后浇带构造</h2>\n<p><strong>后浇带类型：</strong>\n- 收缩后浇带：解决混凝土收缩变形\n- 沉降后浇带：解决不均匀沉降\n- 温度后浇带：解决温度应力</p>\n<p><strong>后浇带宽度：</strong>\n- 不宜小于 800mm\n- 应根据结构计算确定\n- 最大不宜超过 1000mm</p>\n<p><strong>后浇带钢筋：</strong>\n- 钢筋应连续通过，不得断开\n- 钢筋保护层应符合要求\n- 钢筋接头应按设计要求处理</p>\n<p><strong>后浇带混凝土：</strong>\n- 应采用高一强度等级的混凝土\n- 宜采用微膨胀混凝土\n- 养护时间不应少于 28 天</p>\n<h2>3. 预埋件构造</h2>\n<p><strong>预埋件类型：</strong>\n- 钢板预埋件\n- 锚筋预埋件\n- 化学植筋</p>\n<p><strong>锚固长度：</strong>\n- 锚筋直径不应小于 10mm\n- 锚固长度不应小于 15d\n- 锚筋间距不应大于 300mm</p>\n<p><strong>防腐处理：</strong>\n- 预埋件应进行防锈处理\n- 外露部分应涂刷防锈漆\n- 潮湿环境应采取特殊防腐措施</p>\n<h2>4. 孔洞预留</h2>\n<p><strong>孔洞尺寸：</strong>\n- 小孔洞（d≤300mm）：可不经计算直接预留\n- 中等孔洞（300<d≤800mm）：应进行加强\n- 大孔洞（d>800mm）：应进行专门设计</p>\n<p><strong>加强措施：</strong>\n- 孔洞周边应设置附加钢筋\n- 附加钢筋直径不应小于 12mm\n- 附加钢筋长度不应小于孔洞直径的 1.5 倍</p>\n<p><strong>位置要求：</strong>\n- 孔洞不宜设置在构件受力较大部位\n- 孔洞边缘距离构件边缘不应小于 100mm\n- 多个孔洞应保持适当间距</p>\n<h2>5. 装饰层构造</h2>\n<p><strong>抹灰层厚度：</strong>\n- 墙面抹灰厚度：15~20mm\n- 柱面抹灰厚度：20~25mm\n- 梁底抹灰厚度：10~15mm</p>\n<p><strong>钢丝网设置：</strong>\n- 不同材料交接处应设置钢丝网\n- 钢丝网宽度不应小于 300mm\n- 钢丝网固定应牢固</p>\n<p><strong>防裂措施：</strong>\n- 抹灰前应浇水湿润基层\n- 分层抹灰，每层厚度不宜超过 10mm\n- 及时养护，防止干缩裂缝</p>\n<h2>6. 防水构造</h2>\n<p><strong>地下室防水：</strong>\n- 底板应采用自防水混凝土\n- 侧墙应设置外防水层\n- 施工缝应设置止水带</p>\n<p><strong>卫生间防水：</strong>\n- 地面应做找坡层\n- 墙面防水高度不低于 1800mm\n- 管根部位应加强处理</p>\n<p><strong>屋面防水：</strong>\n- 应设置找平层、找坡层、防水层\n- 防水层应有保护措施\n- 排水系统应畅通无阻</p>",
+    "related_calc": null,
+    "related_ann_type": null
+  },
+  {
+    "id": "spec-general-cover",
+    "clause_number": "8.2",
+    "title": "混凝土保护层最小厚度",
+    "category": "general",
+    "content_html": "<h1>8.2 混凝土保护层最小厚度</h1>\n<p>构件中普通钢筋及预应力筋的混凝土保护层厚度指：最外层钢筋（包括箍筋、构造筋、分布筋等）外边缘至混凝土表面的距离。</p>\n<h2>保护层厚度表格</h2>\n<table>\n<thead>\n<tr>\n<th>环境类别</th>\n<th>构件类型</th>\n<th>混凝土强度等级 ≤ C25</th>\n<th>混凝土强度等级 ≥ C30</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td>一</td>\n<td>板、墙</td>\n<td>20mm</td>\n<td>15mm</td>\n</tr>\n<tr>\n<td>一</td>\n<td>梁、柱</td>\n<td>30mm</td>\n<td>20mm</td>\n</tr>\n<tr>\n<td>二a</td>\n<td>板、墙</td>\n<td>25mm</td>\n<td>20mm</td>\n</tr>\n<tr>\n<td>二a</td>\n<td>梁、柱</td>\n<td>35mm</td>\n<td>25mm</td>\n</tr>\n<tr>\n<td>二b</td>\n<td>板、墙</td>\n<td>35mm</td>\n<td>30mm</td>\n</tr>\n<tr>\n<td>二b</td>\n<td>梁、柱</td>\n<td>45mm</td>\n<td>35mm</td>\n</tr>\n<tr>\n<td>三</td>\n<td>板、墙</td>\n<td>40mm</td>\n<td>35mm</td>\n</tr>\n<tr>\n<td>三</td>\n<td>梁、柱</td>\n<td>50mm</td>\n<td>40mm</td>\n</tr>\n</tbody>\n</table>\n<p>注：\n- 对于有防火要求的构件，其保护层厚度尚应符合国家现行有关标准的规定\n- 钢筋混凝土基础宜设置混凝土垫层，基础中钢筋的混凝土保护层厚度应从垫层顶面算起，且不应小于 40mm</p>",
+    "related_calc": null,
+    "related_ann_type": null
+  },
+  {
+    "id": "spec-rebar-lap",
+    "clause_number": "8.4",
+    "title": "钢筋连接与搭接",
+    "category": "general",
+    "content_html": "<h1>8.4 钢筋连接与搭接</h1>\n<h2>1. 连接方式选择</h2>\n<p><strong>机械连接：</strong>\n- 直径大于等于 25mm 的钢筋宜采用机械连接\n- 机械连接接头性能等级不应低于Ⅱ级\n- 接头位置应相互错开，35d 范围内不超过 50%</p>\n<p><strong>焊接连接：</strong>\n- 可采用电弧焊、闪光对焊、电渣压力焊等方式\n- 焊接接头性能应符合相关标准要求\n- 同一截面内接头面积百分率不宜超过 50%</p>\n<p><strong>绑扎搭接：</strong>\n- 直径不大于 25mm 的钢筋可采用绑扎搭接\n- 受拉钢筋搭接长度不应小于 laE（抗震）或 la（非抗震）\n- 受压钢筋搭接长度不应小于 0.7laE 或 0.7la</p>\n<h2>2. 搭接长度计算</h2>\n<p><strong>受拉钢筋基本搭接长度：</strong></p>\n<pre><code>ll = ζl × lab\n</code></pre>\n<p>其中：\n- ζl 为搭接长度修正系数\n- 同一连接区段内搭接钢筋面积百分率≤25% 时，ζl=1.2\n- 50% 时，ζl=1.4\n- 100% 时，ζl=1.6</p>\n<p><strong>抗震搭接长度：</strong></p>\n<pre><code>llE = ζaE × ll\n</code></pre>\n<p>其中 ζaE 为抗震锚固长度修正系数（一二级 1.15，三级 1.05，四级 1.00）。</p>\n<h2>3. 连接区段</h2>\n<p><strong>定义：</strong>\n- 绑扎搭接：1.3 倍搭接长度范围内\n- 机械连接：35d 且不小于 500mm 范围内\n- 焊接连接：35d 且不小于 500mm 范围内</p>\n<p><strong>接头位置要求：</strong>\n- 应避开梁端、柱端箍筋加密区\n- 当无法避开时，应采用Ⅱ级或以上接头，且接头面积百分率不超过 50%\n- 不宜在构件最大弯矩处设置接头</p>\n<h2>4. 保护层厚度</h2>\n<p><strong>混凝土保护层最小厚度（mm）：</strong></p>\n<table>\n<thead>\n<tr>\n<th>环境类别</th>\n<th>板、墙</th>\n<th>梁、柱</th>\n<th>基础</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td>一</td>\n<td>15</td>\n<td>20</td>\n<td>40</td>\n</tr>\n<tr>\n<td>二 a</td>\n<td>20</td>\n<td>25</td>\n<td>40</td>\n</tr>\n<tr>\n<td>二 b</td>\n<td>25</td>\n<td>35</td>\n<td>40</td>\n</tr>\n<tr>\n<td>三 a</td>\n<td>30</td>\n<td>40</td>\n<td>50</td>\n</tr>\n<tr>\n<td>三 b</td>\n<td>40</td>\n<td>50</td>\n<td>-</td>\n</tr>\n</tbody>\n</table>\n<p>注：\n- 基础应有混凝土垫层时，保护层从垫层顶面算起，且不应小于 40mm\n- 无垫层时，保护层不应小于 70mm\n- 处于室内正常环境的一类环境，当混凝土强度等级不大于 C25 时，表中保护层厚度数值应增加 5mm</p>",
+    "related_calc": null,
+    "related_ann_type": null
+  },
+  {
+    "id": "spec-structure-general",
+    "clause_number": "1.1",
+    "title": "结构一般规定",
+    "category": "general",
+    "content_html": "<h1>1.1 结构一般规定</h1>\n<h2>1. 结构设计原则</h2>\n<p><strong>安全性：</strong>\n- 结构应能承受正常施工和使用过程中可能出现的各种作用\n- 在偶然事件发生时及发生后，结构仍能保持必要的整体稳定性\n- 结构的安全等级应根据重要程度确定</p>\n<p><strong>适用性：</strong>\n- 结构在正常使用条件下应具有良好的工作性能\n- 变形、裂缝等不应影响结构的正常使用\n- 构件的振动和噪声应在允许范围内</p>\n<p><strong>耐久性：</strong>\n- 结构在设计使用年限内应满足耐久性要求\n- 应采取有效措施防止钢筋锈蚀\n- 混凝土强度等级和环境类别应匹配</p>\n<h2>2. 荷载分类</h2>\n<p><strong>永久荷载：</strong>\n- 结构自重\n- 土压力\n- 预应力</p>\n<p><strong>可变荷载：</strong>\n- 楼面活荷载\n- 屋面活荷载\n- 风荷载\n- 雪荷载\n- 吊车荷载</p>\n<p><strong>偶然荷载：</strong>\n- 爆炸力\n- 撞击力\n- 地震作用</p>\n<h2>3. 设计方法</h2>\n<p><strong>概率极限状态设计法：</strong>\n- 采用分项系数设计表达式\n- 考虑荷载效应组合\n- 保证结构具有足够的可靠度</p>\n<p><strong>承载能力极限状态：</strong>\n- 结构或构件达到最大承载能力\n- 结构变为机动体系\n- 丧失稳定</p>\n<p><strong>正常使用极限状态：</strong>\n- 影响正常使用或外观的变形\n- 影响正常使用或耐久性的局部损坏\n- 影响正常使用的振动</p>\n<h2>4. 材料选用</h2>\n<p><strong>混凝土：</strong>\n- 强度等级应符合设计要求\n- 耐久性指标应满足环境类别要求\n- 应有出厂合格证和检验报告</p>\n<p><strong>钢筋：</strong>\n- 应采用 HRB400、HRB500 级热轧带肋钢筋\n- 应有屈服强度、抗拉强度和伸长率的检验报告\n- 抗震结构应采用有可靠延性的钢筋</p>\n<p><strong>其他材料：</strong>\n- 焊条、焊接材料应与钢筋强度相匹配\n- 外加剂应符合国家现行标准\n- 预应力筋应有产品质量证明书</p>\n<h2>5. 构造措施</h2>\n<p><strong>最小尺寸要求：</strong>\n- 柱截面边长不宜小于 300mm\n- 梁截面宽度不宜小于 200mm\n- 楼板厚度不宜小于 80mm</p>\n<p><strong>钢筋配置要求：</strong>\n- 纵向受力钢筋直径不宜小于 12mm\n- 箍筋直径应符合规范要求\n- 钢筋净距应满足浇筑混凝土的要求</p>\n<p><strong>连接构造要求：</strong>\n- 钢筋连接应符合规范要求\n- 接头位置应相互错开\n- 连接质量应经检验合格</p>\n<h2>6. 施工要求</h2>\n<p><strong>模板工程：</strong>\n- 模板应具有足够的强度、刚度和稳定性\n- 模板接缝应严密，不得漏浆\n- 模板拆除时间应符合规范规定</p>\n<p><strong>钢筋工程：</strong>\n- 钢筋加工应符合设计要求\n- 钢筋安装位置应准确\n- 钢筋连接质量应合格</p>\n<p><strong>混凝土工程：</strong>\n- 混凝土配合比应经过试验确定\n- 混凝土浇筑应连续进行\n- 混凝土养护应及时充分</p>\n<h2>7. 验收标准</h2>\n<p><strong>主控项目：</strong>\n- 材料质量应符合设计要求\n- 结构尺寸应符合规范规定\n- 钢筋连接质量应合格</p>\n<p><strong>一般项目：</strong>\n- 钢筋安装位置偏差应在允许范围内\n- 混凝土表面应平整、无缺陷\n- 外观质量应符合要求</p>\n<p><strong>资料要求：</strong>\n- 应有完整的设计文件\n- 应有原材料检验报告\n- 应有施工记录和验收记录</p>",
+    "related_calc": null,
+    "related_ann_type": null
+  }
+]

@@ -81,7 +81,31 @@ app.include_router(specification_router, prefix="/api/v1/specification", tags=["
 # 用于部署到 Railway 时服务前端构建产物
 static_dir = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "..", "frontend", "dist")
 if os.path.exists(static_dir):
-    app.mount("/", StaticFiles(directory=static_dir, html=True), name="static")
+    from fastapi.staticfiles import StaticFiles
+    from starlette.staticfiles import StaticFiles as StarletteStaticFiles
+
+    # 使用子应用方式挂载，避免覆盖 API 路由
+    app.mount("/assets", StaticFiles(directory=os.path.join(static_dir, "assets")), name="assets")
+    app.mount("/icons", StaticFiles(directory=os.path.join(static_dir, "icons")), name="icons")
+
+    # 使用中间件处理 SPA 路由（仅在非 API 路径时返回 index.html）
+    from fastapi.responses import FileResponse
+    index_file = os.path.join(static_dir, "index.html")
+
+    @app.middleware("http")
+    async def _add_static(request, call_next):
+        path = request.url.path
+        # API 路径正常处理
+        if path.startswith("/api/") or path.startswith("/docs") or path.startswith("/openapi"):
+            return await call_next(request)
+        # 已知的静态文件路径直接返回文件
+        if path.startswith("/assets/") or path.startswith("/icons/"):
+            return await call_next(request)
+        # 根路径返回 index.html
+        response = await call_next(request)
+        if response.status_code == 404 and index_file:
+            return FileResponse(index_file)
+        return response
 
 
 @app.get("/")

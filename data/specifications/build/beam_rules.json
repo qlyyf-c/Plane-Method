@@ -1,0 +1,65 @@
+[
+  {
+    "id": "spec-beam-concentrated",
+    "clause_number": "4.2.1",
+    "title": "集中标注内容详解",
+    "category": "beam",
+    "content_html": "<h1>4.2.1 集中标注内容详解</h1>\n<p>梁集中标注应包括以下五项必注值：</p>\n<ol>\n<li><strong>梁编号</strong>：如 KL7(3) 表示框架梁 7 号，3 跨；</li>\n<li><strong>截面尺寸</strong>：b×h（宽×高），如 300×650；</li>\n<li><strong>箍筋</strong>：如 φ8@100/200(2) 表示直径 8mm，加密区间距 100，非加密区间距 200，双肢箍；</li>\n<li><strong>上部通长筋</strong>：如 2Φ20 表示 2 根直径 20mm 的上部通长筋；</li>\n<li><strong>侧面纵筋</strong>：构造筋 G 或受扭筋 N，如 G4φ10 或 N4Φ14。</li>\n</ol>",
+    "related_calc": null,
+    "related_ann_type": "beam"
+  },
+  {
+    "id": "spec-beam-detail",
+    "clause_number": "4.2.5",
+    "title": "梁截面尺寸与配筋",
+    "category": "beam",
+    "content_html": "<h1>4.2.5 梁截面尺寸与配筋</h1>\n<h2>1. 梁截面尺寸</h2>\n<p><strong>最小宽度：</strong>\n- 矩形梁截面宽度不宜小于 200mm\n- 当梁跨度大于 6m 时，宽度不宜小于跨度的 1/20\n- 抗震设计时，梁截面宽度不宜小于 250mm</p>\n<p><strong>最小高度：</strong>\n- 简支梁：h ≥ l₀/12（l₀为计算跨度）\n- 连续梁：h ≥ l₀/15\n- 悬臂梁：h ≥ l₀/6</p>\n<p><strong>宽高比：</strong>\n- 矩形梁的截面高宽比 h/b 宜为 2.0~3.0\n- T 形梁的翼缘宽度 bf 不应小于 bf&rsquo; + s/2（s 为梁间距）</p>\n<h2>2. 纵向钢筋配置</h2>\n<p><strong>最大配筋率：</strong>\n- 一级抗震框架梁：ρmax = 2.5%\n- 二~四级抗震框架梁：ρmax = 2.75%\n- 非抗震框架梁：ρmax = 3.0%</p>\n<p><strong>最小配筋率：</strong>\n| 抗震等级 | 支座负筋 | 跨中底筋 |\n|----------|----------|----------|\n| 一级     | 0.4%     | 0.25%    |\n| 二级     | 0.35%    | 0.20%    |\n| 三级     | 0.30%    | 0.18%    |\n| 四级     | 0.25%    | 0.15%    |</p>\n<p><strong>钢筋净距：</strong>\n- 上部纵筋净距不应小于 30mm 且不小于 1.5d（d 为钢筋直径）\n- 下部纵筋净距不应小于 25mm 且不小于 d\n- 当混凝土保护层厚度 c &gt; 25mm 时，可适当减小净距</p>\n<h2>3. 多排钢筋布置</h2>\n<p><strong>上排钢筋：</strong>\n- 第一排钢筋距离混凝土顶面不应小于 25mm 且不小于 d\n- 第二排及以上钢筋应均匀分布</p>\n<p><strong>下排钢筋：</strong>\n- 第一排钢筋距离混凝土底面不应小于 25mm 且不小于 d\n- 第二排钢筋应与第一排钢筋保持适当间距</p>\n<p><strong>层间间距：</strong>\n- 同一排钢筋中的多层钢筋应错开布置\n- 竖向间距不宜小于 25mm 且不小于 1.5d</p>",
+    "related_calc": null,
+    "related_ann_type": "beam"
+  },
+  {
+    "id": "spec-beam-hanger",
+    "clause_number": "4.2.6",
+    "title": "梁吊筋与附加箍筋",
+    "category": "beam",
+    "content_html": "<h1>4.2.6 梁吊筋与附加箍筋</h1>\n<h2>1. 设置条件</h2>\n<p><strong>应设置吊筋或附加箍筋的情况：</strong>\n- 主次梁交接处，次梁上部有集中荷载\n- 框架梁承受墙体重量等较大集中荷载\n- 吊车梁承受吊车轮压产生的集中荷载\n- 其他需要传递集中荷载的部位</p>\n<p><strong>可不设置的特殊情况：</strong>\n- 当主梁配置足够的抗剪箍筋时\n- 当集中荷载较小且经计算不需要时\n- 当采用其他方式（如加腋）有效传递荷载时</p>\n<h2>2. 吊筋构造</h2>\n<p><strong>吊筋形式：</strong>\n- 宜采用 HRB400 级钢筋\n- 可采用单肢吊筋或双肢吊筋\n- 吊筋应弯折成 45°或 60°角</p>\n<p><strong>锚固长度：</strong>\n- 吊筋上端水平段锚固长度不应小于 20d\n- 吊筋下端应伸至主梁底部并弯钩\n- 弯钩角度不应小于 45°，平直段长度不小于 10d</p>\n<p><strong>截面尺寸：</strong>\n- 吊筋直径不宜小于 12mm\n- 当集中荷载较大时，直径不宜小于 16mm\n- 当荷载特别大时，可采用多根吊筋组合</p>\n<p><strong>布置位置：</strong>\n- 吊筋应布置在集中荷载作用位置两侧\n- 第一道吊筋距离集中荷载作用点不应大于 50mm\n- 吊筋间距不应大于 300mm</p>\n<h2>3. 附加箍筋构造</h2>\n<p><strong>附加箍筋直径：</strong>\n- 应与主梁箍筋直径相同\n- 当主梁箍筋直径小于 8mm 时，附加箍筋直径不应小于 8mm</p>\n<p><strong>附加箍筋间距：</strong>\n- 附加箍筋应在集中荷载作用范围两侧各 3s 范围内设置\n- s 为加密区间距\n- 间距不应大于 100mm</p>\n<p><strong>附加箍筋数量：</strong>\n- 每侧不应少于 3 个\n- 总数量不应少于 6 个\n- 当集中荷载特别大时，应通过计算确定</p>\n<p><strong>附加箍筋形式：</strong>\n- 应采用封闭式箍筋\n- 箍筋应包围主梁下部纵筋\n- 箍筋末端应做成 135°弯钩</p>\n<h2>4. 设计计算公式</h2>\n<p><strong>吊筋承载力：</strong></p>\n<pre><code>Fd ≤ 2 × fy × As × sinα\n</code></pre>\n<p>其中：\n- Fd — 吊筋承担的集中荷载设计值\n- fy — 吊筋抗拉强度设计值\n- As — 吊筋截面面积\n- α — 吊筋弯折角度</p>\n<p><strong>附加箍筋承载力：</strong></p>\n<pre><code>Fv ≤ nv × fyv × Av\n</code></pre>\n<p>其中：\n- Fv — 附加箍筋承担的集中荷载设计值\n- nv — 附加箍筋肢数\n- fyv — 箍筋抗拉强度设计值\n- Av — 单肢箍筋截面面积</p>\n<h2>5. 施工注意事项</h2>\n<ul>\n<li>吊筋和附加箍筋应在绑扎主梁钢筋时同时安装</li>\n<li>应先固定吊筋位置，再绑扎附加箍筋</li>\n<li>吊筋下端的弯钩应紧贴主梁底筋</li>\n<li>附加箍筋应与主梁箍筋绑扎牢固</li>\n<li>隐蔽工程验收时应重点检查吊筋和附加箍筋的安装质量</li>\n</ul>",
+    "related_calc": null,
+    "related_ann_type": "beam"
+  },
+  {
+    "id": "spec-beam-notation",
+    "clause_number": "4.2",
+    "title": "梁平法标注规则",
+    "category": "beam",
+    "content_html": "<h1>4.2 梁平法标注规则</h1>\n<p>梁平法施工图采用平面注写方式，包括<strong>集中标注</strong>与<strong>原位标注</strong>两部分。</p>\n<p><strong>集中标注：</strong>表达梁的通用数值\n- 梁编号（KL、L、WKL、XL 等）\n- 截面尺寸 b×h（宽×高）\n- 箍筋\n- 上部通长筋或架立筋\n- 侧面纵筋（构造筋或受扭筋）\n- 梁顶面标高高差（可选）</p>\n<p><strong>原位标注：</strong>表达梁的特殊数值\n- 支座负筋（上部非通长筋）\n- 下部纵筋\n- 附加箍筋或吊筋</p>\n<table>\n<thead>\n<tr>\n<th>代号</th>\n<th>名称</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td>KL</td>\n<td>框架梁</td>\n</tr>\n<tr>\n<td>L</td>\n<td>非框架梁</td>\n</tr>\n<tr>\n<td>WKL</td>\n<td>屋面框架梁</td>\n</tr>\n<tr>\n<td>XL</td>\n<td>悬挑梁</td>\n</tr>\n</tbody>\n</table>",
+    "related_calc": null,
+    "related_ann_type": "beam"
+  },
+  {
+    "id": "spec-beam-original",
+    "clause_number": "4.2.2",
+    "title": "原位标注内容详解",
+    "category": "beam",
+    "content_html": "<h1>4.2.2 原位标注内容详解</h1>\n<p>梁原位标注主要包括：</p>\n<ul>\n<li><strong>支座负筋</strong>：标注在支座处，如 6Φ25 4/2 表示上排 4 根、下排 2 根；</li>\n<li><strong>下部纵筋</strong>：标注在梁下方，如 4Φ22 表示 4 根直径 22mm 的下部纵筋；</li>\n<li><strong>附加箍筋或吊筋</strong>：用于主次梁交接处。</li>\n</ul>",
+    "related_calc": null,
+    "related_ann_type": "beam"
+  },
+  {
+    "id": "spec-beam-reinforcement",
+    "clause_number": "4.2.3",
+    "title": "梁纵向钢筋配置",
+    "category": "beam",
+    "content_html": "<h1>4.2.3 梁纵向钢筋配置</h1>\n<h2>1. 上部纵筋</h2>\n<p><strong>通长筋：</strong>\n- 框架梁应沿梁全长设置通长纵向钢筋\n- 当梁跨度大于 4m 时，直径不宜小于 10mm\n- 当梁跨度大于 6m 时，直径不宜小于 12mm\n- 当梁跨度大于 9m 时，直径不宜小于 14mm</p>\n<p><strong>支座负筋：</strong>\n- 第一排支座负筋延伸至净跨的 1/3 处\n- 第二排支座负筋延伸至净跨的 1/4 处\n- 支座负筋应从柱边或梁边开始延伸</p>\n<h2>2. 下部纵筋</h2>\n<p><strong>底部纵筋：</strong>\n- 底部纵筋应在支座内锚固\n- 当支座宽度满足直锚要求时，可采用直锚\n- 当支座宽度不满足直锚要求时，应采用弯锚</p>\n<p><strong>锚固长度：</strong>\n- 底筋在端支座的锚固长度不应小于 laE（抗震）或 la（非抗震）\n- 底筋在中支座的锚固长度不应小于 laE 或 la</p>\n<h2>3. 侧面纵筋</h2>\n<p><strong>构造钢筋（G 开头）：</strong>\n- 当梁腹板高度 hw ≥ 450mm 时，应配置侧面构造钢筋\n- 侧面构造钢筋间距不宜大于 200mm\n- 侧面构造钢筋的直径不宜小于 12mm</p>\n<p><strong>受扭钢筋（N 开头）：</strong>\n- 当梁承受扭矩时，应配置抗扭纵筋\n- 抗扭纵筋应沿截面周边均匀布置\n- 抗扭纵筋的间距不应大于 200mm 及梁截面短边长度</p>",
+    "related_calc": null,
+    "related_ann_type": "beam"
+  },
+  {
+    "id": "spec-beam-stirrup",
+    "clause_number": "4.2.4",
+    "title": "梁箍筋构造",
+    "category": "beam",
+    "content_html": "<h1>4.2.4 梁箍筋构造</h1>\n<h2>1. 箍筋直径</h2>\n<ul>\n<li>当梁高 h ≤ 800mm 时，箍筋直径不宜小于 6mm</li>\n<li>当梁高 h &gt; 800mm 时，箍筋直径不宜小于 8mm</li>\n<li>抗震设计时，一级框架梁箍筋直径不应小于 10mm</li>\n</ul>\n<h2>2. 箍筋间距</h2>\n<p><strong>加密区范围：</strong>\n- 一级框架：取 2h₀、500mm 中的较大值\n- 二~四级框架：取 1.5h₀、500mm 中的较大值\n- h₀为梁截面有效高度</p>\n<p><strong>加密区间距：</strong>\n- 一级框架：不大于 d/4、6d、100mm 中的最小值（d 为纵筋直径）\n- 二~四级框架：不大于 d/4、8d、150mm 中的最小值</p>\n<p><strong>非加密区间距：</strong>\n- 不应大于箍筋直径的 15 倍（纵筋为光圆钢筋时为 10 倍）\n- 且不应大于 300mm</p>\n<h2>3. 箍筋形式</h2>\n<ul>\n<li>应做成封闭式</li>\n<li>抗震设计时，末端应做成 135°弯钩</li>\n<li>弯钩平直段长度不应小于 5 倍箍筋直径，且不小于 75mm</li>\n<li>可采用双肢箍、四肢箍等复合箍筋形式</li>\n</ul>\n<h2>4. 箍筋配置要求</h2>\n<p><strong>支座处：</strong>\n- 箍筋应沿梁全长加密或按计算确定\n- 第一道箍筋距离柱边不应大于 50mm</p>\n<p><strong>吊筋和附加箍筋：</strong>\n- 当梁上集中荷载较大时，应设置吊筋或附加箍筋\n- 吊筋应布置在集中荷载作用位置两侧\n- 附加箍筋数量不应少于 4 个，直径与主箍筋相同</p>",
+    "related_calc": null,
+    "related_ann_type": "beam"
+  }
+]

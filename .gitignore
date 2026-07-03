@@ -42,7 +42,7 @@ Thumbs.db
 # Build output
 frontend/dist/
 frontend/dev-dist/
-build/
+frontend/build/
 
 # Test coverage
 htmlcov/
