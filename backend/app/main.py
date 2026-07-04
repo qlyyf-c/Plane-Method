@@ -108,15 +108,6 @@ if os.path.exists(static_dir):
         return response
 
 
-@app.get("/")
-async def root():
-    """根路径 - 返回应用基本信息"""
-    return {
-        "app": "平法助手 PingFa",
-        "version": "0.1.0",
-        "docs": "/docs",
-    }
-
 @app.get("/api")
 async def api_root():
     """API 根路径 - 返回应用基本信息"""
